@@ -32,6 +32,28 @@
                                                               width="130">Сделано в HTML Academy</a>в 2017 году</p>
 </footer>
 
+<script type="text/javascript">
+  var fireballSize = 22;                             // управляет размером фаербола
+  var getFireballSpeed = function(left = true) {     // управляет скоростью фаербола
+    if (left === true) {
+      return 5;
+    } else {
+      return 2;
+    }
+  };
+  var wizardSpeed = 3;                              // управляет скоростью мага
+  var wizardWidth = 70;                             // управляет шириной мага
+  var getWizardHeight = function() {                // управялет высотой мага
+    return 1.337 * wizardWidth;
+  };
+  var getWizardX = function(width) {                // управляет начальным положение мага по ширине
+    return (width - wizardWidth) / 2;
+  };
+  var getWizardY = function(height) {
+    return height * 2 / 3;
+  };
+
+</script>
 <script src="js/game.js" type="application/javascript"></script>
 
 </body>
