@@ -1,10 +1,5 @@
 'use strict';
 
-var canvas = document.querySelector('canvas');
-var ctx = canvas.getContext('2d');
-var names = ['Маша', 'Галя', 'Карина', 'Вы'];
-var times = [100, 200.2, 420, 150.25];
-
 window.renderStatistics = function(ctx, names, times) {
   var arrHeight = timeInHeight();
   var color = colorInName();
@@ -100,4 +95,4 @@ window.renderStatistics = function(ctx, names, times) {
   }
 }
 
-window.renderStatistics(ctx, names, times);
+// window.renderStatistics(ctx, names, times);
