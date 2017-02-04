@@ -94,5 +94,3 @@ window.renderStatistics = function(ctx, names, times) {
     xCoord = xCoord + distanceBetweenColumn + widthColumn;
   }
 }
-
-// window.renderStatistics(ctx, names, times);
