@@ -3,20 +3,82 @@
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
+var setupOpenIcon = setupOpen.querySelector('.setup-open-icon');
 
 // При нажатии на меню .setup-open удаляем класс invisible
 // у окна .setup
 
-setupOpen.addEventListener('click', function() {
+var ENTER_KEY_KODE = 13;
+var ESCAPE_KEY_KODE = 27;
+
+// ф-я openSetup() обрабатывает открытие окна изменения персонажа
+
+function openSetup() {
   setup.classList.remove('invisible');
+  setup.setAttribute('aria-hidden', true);
+  setupOpenIcon.setAttribute('aria-pressed', true);
+  setupClose.setAttribute('aria-pressed', false);
+}
+
+// ф-я closeSetup() обрабатывает закрытие окна изменения персонажа
+
+function closeSetup() {
+  setup.classList.add('invisible');
+  setup.setAttribute('aria-hidden', false);
+  setupOpenIcon.setAttribute('aria-pressed', false);
+  setupClose.setAttribute('aria-pressed', true);
+}
+
+setupOpen.addEventListener('click', function() {
+  openSetup();
+
+  document.addEventListener('keydown', function(event) {
+    if (event.keyCode === ESCAPE_KEY_KODE) {
+      closeSetup();
+    }
+  })
+});
+
+setupOpen.addEventListener('keypress', function(event) {
+  if (event.keyCode === ENTER_KEY_KODE) {
+    openSetup();
+  }
+
+  document.addEventListener('keydown', function(event) {
+    if (event.keyCode === ESCAPE_KEY_KODE) {
+      closeSetup();
+    }
+  })
 });
 
 // При нажатии на .setup-close добавляем класс invisible
 // окну .setup
 
 setupClose.addEventListener('click', function() {
-  setup.classList.add('invisible');
+  closeSetup();
 });
+
+setupClose.addEventListener('keydown', function(event) {
+  if (event.keyCode === ENTER_KEY_KODE) {
+    closeSetup();
+  }
+});
+
+// При нажатии на кнопку Сохранить .setup-submit добавляем окну класс invisible
+
+var saveBtn = document.querySelector('.setup-submit');
+
+saveBtn.addEventListener('click', function(event) {
+  event.preventDefault();
+  closeSetup();
+})
+
+saveBtn.addEventListener('keydown', function(event) {
+  if (event.keyCode === ENTER_KEY_KODE) {
+    event.preventDefault();
+    closeSetup();
+  }
+})
 
 // Реализуем алогоритм смены цвета мантии #wizard-coat волшебника
 
